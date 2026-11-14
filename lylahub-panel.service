@@ -1,0 +1,33 @@
+[Unit]
+Description=LylaHub WhatsMiau panel API bridge
+After=network.target docker.service
+Wants=docker.service
+
+[Service]
+Type=simple
+User=lylahub-panel
+Group=lylahub-panel
+WorkingDirectory=/opt/projeto-exemplo/panel
+ExecStart=/usr/bin/python3 -B /opt/projeto-exemplo/panel/server.py
+LoadCredential=whatsmiau.env:/opt/projeto-exemplo/whatsmiau/.env
+Restart=on-failure
+RestartSec=3
+MemoryMax=160M
+TasksMax=32
+UMask=0077
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+CapabilityBoundingSet=
+IPAddressDeny=any
+IPAddressAllow=localhost
+
+[Install]
+WantedBy=multi-user.target

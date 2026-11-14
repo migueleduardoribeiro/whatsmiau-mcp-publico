@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="WhatsMiau: gato em balão de conversa verde">
+  <path fill="#087F5B" d="M148 36h216a112 112 0 0 1 112 112v184a112 112 0 0 1-112 112H190L70 478l28-94a112 112 0 0 1-62-100V148A112 112 0 0 1 148 36Z"/>
+  <path fill="#FFFFFF" d="M140 236V144q0-18 16-8l65 40h70l65-40q16-10 16 8v92c0 76-46 116-116 116S140 312 140 236Z"/>
+  <path fill="#A5E9C5" d="m157 164 37 23-37 22Zm198 0-37 23 37 22Z"/>
+  <ellipse cx="210" cy="250" rx="11" ry="15" fill="#087F5B"/>
+  <ellipse cx="302" cy="250" rx="11" ry="15" fill="#087F5B"/>
+  <path d="m246 281 10 9 10-9Z" fill="#087F5B" stroke="#087F5B" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M256 292v8m0 0q-14 18-29 2m29-2q14 18 29 2" fill="none" stroke="#087F5B" stroke-width="8" stroke-linecap="round"/>
+  <path d="m178 280-45-8m45 24-45 9m201-25 45-8m-45 24 45 9" fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round"/>
+</svg>

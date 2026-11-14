@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacidade — LylaHub WhatsMiau</title>
+<main>
+<h1>Privacidade — LylaHub WhatsMiau</h1>
+<p>Atualização: 21 de outubro de 2026. Esta página descreve a implantação pessoal do LylaHub WhatsMiau, administrada pelo proprietário da conta conectada.</p>
+<h2>Dados e finalidade</h2>
+<p>Após ativação pelo proprietário, o aplicativo arquiva mensagens de conversas individuais e de grupos da instância WhatsApp autorizada: texto, identificadores técnicos de conversa e mensagem, data, direção, edições, exclusões recebidas e anexos disponíveis dentro dos limites do serviço. Em grupos, o arquivo pode incluir o JID e o nome informado pelo participante quando o WhatsApp os fornece. Mensagens de visualização única são excluídas da captura. O arquivo não recupera mensagens anteriores à ativação.</p>
+<p>Esses dados permitem consultar conversas e imagens e conservar os arquivos no Google Drive do proprietário. O envio de mensagens e arquivos ocorre quando solicitado pelo proprietário por meio de um cliente autorizado, como o ChatGPT.</p>
+<h2>Google Drive e permissões</h2>
+<p>O aplicativo solicita somente a permissão Google <code>drive.file</code>, para criar e acessar os arquivos deste aplicativo ou arquivos explicitamente autorizados para ele. Também consulta o endereço de e-mail da conta Google para confirmar que a autorização pertence à conta proprietária configurada. Não solicita acesso geral a todos os arquivos do Drive.</p>
+<p>Mensagens, índices e anexos ficam em uma pasta privada no Google Drive. O aplicativo não cria links públicos nem compartilha a pasta. Tokens de autorização são guardados de forma restrita na VM do WhatsMiau e permitem continuar os uploads e consultas até revogação ou expiração.</p>
+<h2>Transcrição de áudio solicitada</h2>
+<p>Quando o proprietário solicita transcrição, o áudio arquivado é enviado ao Groq, usando Whisper large v3. O texto é reutilizado no Drive privado. Uma pendência temporária limitada pode ficar na VM até confirmar o upload. Aplicam-se as políticas de dados e retenção do Groq; não se promete retenção zero. Não há transcrição automática de mensagens nem alternativa paga.</p>
+<h2>Processamento e acesso</h2>
+<p>O processamento ocorre na VM do WhatsMiau. Uma fila local e arquivos temporários limitados permitem tentar novamente uploads que falharam. O conteúdo confirmado no Drive é removido da fila e do espaço temporário operacional. Administradores autorizados da infraestrutura podem ter acesso técnico a esses dados.</p>
+<p>O Google recebe os arquivos para armazenamento. O WhatsApp processa as comunicações. Quando o proprietário solicita uma consulta no ChatGPT ou em outro cliente MCP autorizado, os resultados correspondentes são fornecidos a esse cliente e ficam sujeitos às configurações e políticas desse serviço.</p>
+<p>Este aplicativo não vende dados, não os usa para publicidade e não usa o conteúdo do Drive para treinar modelos. O uso de informações recebidas das APIs do Google segue a <a href="https://developers.google.com/terms/api-services-user-data-policy">Política de dados do usuário dos serviços de API do Google</a>, incluindo os requisitos de uso limitado.</p>
+<h2>Retenção, exclusão e revogação</h2>
+<p>O arquivo permanece no Drive até ser removido pelo proprietário. Exclusões recebidas do WhatsApp ocultam a mensagem nas consultas atuais; revisões antigas podem permanecer nos lotes de histórico e anexos do Drive. Excluir uma mensagem no WhatsApp não apaga automaticamente todas as cópias arquivadas.</p>
+<p>O proprietário pode revogar o acesso nas conexões da conta Google, desativar a captura e remover a pasta do aplicativo pelo próprio Drive. Revogar acesso interrompe novas operações autorizadas e não apaga os arquivos já existentes. Dados pendentes na fila local devem ser tratados pelo administrador ao desativar a implantação.</p>
+<p>As conexões externas usam HTTPS. Os controles de acesso não representam criptografia de ponta a ponta entre WhatsApp, Drive e o cliente de IA.</p>
+<p>Contato para dúvidas ou remoção: <a href="mailto:contato@example.org">contato@example.org</a>.</p>
+<p><a href="/drive/info">Voltar ao aplicativo</a></p>
+</main>
+</html>

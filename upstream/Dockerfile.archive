@@ -1,0 +1,19 @@
+FROM golang:1.26-alpine AS builder
+ENV GOMAXPROCS=2 GOMEMLIMIT=2GiB
+RUN apk add --no-cache build-base sqlite-dev python3
+WORKDIR /app
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN python3 .archive-patch.py /app --tests-only
+RUN if go test -p 2 ./lib/whatsmiau -run '^TestArchiveMetadata$' -count=1 > /tmp/archive-red.log 2>&1; then cat /tmp/archive-red.log; exit 1; else grep -E 'undefined: archiveFlags|unknown field IsViewOnce' /tmp/archive-red.log; fi
+RUN python3 .archive-patch.py /app && gofmt -w lib/whatsmiau/archive_metadata*.go lib/whatsmiau/models.go lib/whatsmiau/event_emitter.go
+RUN go test -p 2 ./lib/whatsmiau -run '^TestArchiveMetadata$' -count=1 -v
+RUN python3 .conversation-patch/prepare_conversation_diagnostics.py /app && gofmt -w lib/whatsmiau/conversation_*.go server/controllers/conversation_snapshot*.go server/routes/chat.go
+RUN go test -p 2 ./lib/whatsmiau ./server/controllers -run '^TestConversation' -count=1 -v
+RUN CGO_ENABLED=1 GOOS=linux go build -p 2 -o /app/whatsmiau-archive main.go
+
+FROM impedr029/whatsmiau@sha256:c68e7e0dee25450e46171104a5a0f83f290ee7dbb157dac49ed2df5901808b38
+COPY --from=builder /app/whatsmiau-archive /app/whatsmiau
+LABEL io.lylahub.archive-metadata="v1" io.lylahub.upstream-revision="1b94311bee36ce754f843b768576b0731f8861e5"
+LABEL io.lylahub.conversation-diagnostics="snapshot-v1-opt-in"
